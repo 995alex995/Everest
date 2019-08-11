@@ -288,7 +288,11 @@
     -fx-background-color: #303030;
 }
 
-.searchTextField {
+#clearHistory {
+	-fx-background-color: #ff0000;
+	-fx-text-fill: white;
+
+#searchTextField {
     -fx-background-color: transparent;
     -fx-text-fill: white;
 }
