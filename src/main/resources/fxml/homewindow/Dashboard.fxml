@@ -177,6 +177,10 @@
                                                                     </image>
                                                                 </ImageView>
                                                             </graphic>
+                                                            <tooltip>
+                                                                <Tooltip autoHide="true"
+                                                                         text="Copy"/>
+                                                            </tooltip>                                                          
                                                             <font>
                                                                 <Font size="12.0"/>
                                                             </font>

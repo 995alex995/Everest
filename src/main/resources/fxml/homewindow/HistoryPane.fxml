@@ -46,7 +46,8 @@
                         <Font size="13.0"/>
                     </font>
 				</TextField>
-                <JFXButton fx:id="clearSearchFieldButton" ripplerFill="WHITE" HBox.hgrow="ALWAYS">
+                <JFXButton fx:id="clearSearchFieldButton" 
+                ripplerFill="WHITE" HBox.hgrow="ALWAYS">
 					<graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 							<image>
@@ -64,11 +65,13 @@
 			<children>
 				<StackPane>
 					<children>
-                        <ScrollPane fx:id="historyScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
+                        <ScrollPane fx:id="historyScrollPane" 
+                        fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
 							<content>
                                 <VBox fx:id="searchTab" alignment="TOP_CENTER" spacing="5.0">
 									<padding>
-                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" 
+                                        top="20.0"/>
 									</padding>
 								</VBox>
 							</content>
@@ -139,5 +142,7 @@
 				</StackPane>
 			</children>
 		</StackPane>
+	  <JFXButton fx:id="clearHistory" visible="true" text="CLEAR HISTORY"  onAction="#clearHistory">
+	  </JFXButton>
 	</children>
 </VBox>

@@ -34,6 +34,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -48,6 +50,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.ResourceBundle;
+
+
 
 public class HomeWindowController implements Initializable {
     @FXML
@@ -130,8 +134,7 @@ public class HomeWindowController implements Initializable {
             activeTab.setText("New Tab");
         else
             activeTab.setText(newValue);
-    }
-
+    }   
     /**
      * Updates the current state of the Dashboard in the tabStateMap
      * corresponding to the previously selected tab. (calls DashboardController.getState())
@@ -170,7 +173,6 @@ public class HomeWindowController implements Initializable {
     private void addTab() {
         addTab(new ComposerState());
     }
-
     /**
      * Adds a new tab to the tabPane initialized with
      * the ComposerState provided.
@@ -190,7 +192,6 @@ public class HomeWindowController implements Initializable {
 
         DashboardState newState = new DashboardState(composerState);
         tabStateMap.put(newTab, newState);
-
         /*
             DO NOT mess with the following code. The sequence of these steps is very crucial:
              1. Get the currently selected tab.
@@ -204,18 +205,26 @@ public class HomeWindowController implements Initializable {
         tabPane.getTabs().add(newTab);
         tabPane.getSelectionModel().select(newTab);
         onTabSwitched(prevState, prevTab, newTab);
-
         newTab.setOnCloseRequest(e -> {
             removeTab(newTab);
-
+            
+            
             // Closes the application if the last tab is closed
             if (tabPane.getTabs().size() == 0) {
-                saveState();
-                Stage thisStage = (Stage) homeWindowSP.getScene().getWindow();
-                thisStage.close();
-            }
-        });
-    }
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("Confirmation");
+				alert.setHeaderText("Confirm your exit request.");
+				alert.showAndWait();
+				if (alert.getResult() == ButtonType.OK) {
+					saveState();
+					Stage thisStage = (Stage) homeWindowSP.getScene().getWindow();
+					thisStage.close();
+				} else {
+					return;
+				}
+			}
+		});
+	}
 
     private void removeTab(Tab newTab) {
         DashboardState state = tabStateMap.remove(newTab);
@@ -248,6 +257,7 @@ public class HomeWindowController implements Initializable {
         }
     }
 
+    
     private void recoverState() {
         try {
             File stateFile = new File("Everest/config/state.json");

@@ -16,9 +16,13 @@
 
 package com.rohitawate.everest.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.rohitawate.everest.controllers.search.SearchablePaneController;
 import com.rohitawate.everest.state.ComposerState;
 import com.rohitawate.everest.sync.SyncManager;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
@@ -27,6 +31,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
+
 
 public class HistoryPaneController extends SearchablePaneController<ComposerState> {
     private List<Consumer<ComposerState>> stateClickHandler = new LinkedList<>();
@@ -66,4 +71,10 @@ public class HistoryPaneController extends SearchablePaneController<ComposerStat
 	public void setSyncManager(SyncManager syncManager) {
 		this.syncManager = syncManager;
 	}
+	@FXML
+	private JFXButton clearHistory;
+
+	@FXML
+	void clearHistory(ActionEvent event) {
+		syncManager.clearHistory();}
 }

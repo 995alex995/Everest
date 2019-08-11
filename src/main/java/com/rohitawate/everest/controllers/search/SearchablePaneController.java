@@ -48,6 +48,7 @@ public abstract class SearchablePaneController<T> implements Initializable {
     @FXML
     private VBox searchTab, searchBox, searchPane;
 
+   
     private List<Searchable<T>> searchableItems;
 
     protected static class SearchEntry<T> {
